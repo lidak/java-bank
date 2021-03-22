@@ -2,7 +2,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 
 public class Bank {
-    public static ArrayList<BankAccount> accounts = new ArrayList<>();
+    public ArrayList<BankAccount> accounts = new ArrayList<>();
     private int generateAccountNumber() {
         return ThreadLocalRandom.current().nextInt(Integer.MAX_VALUE);
     }

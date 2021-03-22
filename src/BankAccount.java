@@ -1,6 +1,6 @@
 public class BankAccount {
     public int accountNumber;
-    public static double amount;
+    public double amount;
 
     public BankAccount(double initialAmount, int i) {
         amount = initialAmount;
