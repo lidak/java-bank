@@ -9,6 +9,6 @@ public class Main {
         transaction.sender = mySecondAccount.accountNumber;
         transaction.amount = 11.30;
 
-        myBank.envokeTransaction(transaction);
+        myBank.invokeTransaction(transaction);
     }
 }

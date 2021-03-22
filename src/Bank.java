@@ -1,8 +1,8 @@
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Bank {
-    public ArrayList<BankAccount> accounts = new ArrayList<>();
+    public HashMap<Integer, BankAccount> accounts = new HashMap<>();
     private int generateAccountNumber() {
         return ThreadLocalRandom.current().nextInt(Integer.MAX_VALUE);
     }
@@ -10,24 +10,22 @@ public class Bank {
     public BankAccount createAccount (double initialAmount) {
         int accountNumber = generateAccountNumber();
         BankAccount newAccount = new BankAccount(initialAmount, accountNumber);
-        accounts.add(newAccount);
+        accounts.putIfAbsent(accountNumber, newAccount);
         return newAccount;
     }
 
     public BankAccount getAccountByNumber(int _accountNumber) {
-        int i = 0;
-        while(i < accounts.size()) {
-            BankAccount currentItem = accounts.get(i);
-            if (currentItem.accountNumber == _accountNumber) {
-                return currentItem;
-            }
-            i++;
+        BankAccount targetAccount = accounts.get(_accountNumber);
+        System.out.println("Printed value is");
+        System.out.println(accounts.get(123));
+        if (targetAccount != null) {
+            return targetAccount;
         }
         System.out.println("No account found");
         return null;
     }
 
-    public Transaction envokeTransaction(Transaction transaction) {
+    public Transaction invokeTransaction(Transaction transaction) {
         BankAccount receiver = getAccountByNumber(transaction.receiver);
         BankAccount sender = getAccountByNumber(transaction.sender);
 
